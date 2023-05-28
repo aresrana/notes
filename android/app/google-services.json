@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "431442128706",
+    "project_id": "mynotes-223be",
+    "storage_bucket": "mynotes-223be.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431442128706:android:6776b2ec8684b1b03722db",
+        "android_client_info": {
+          "package_name": "com.TestF1.mynotes2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431442128706-g44795e2b5vtiprp3e9ie0eth4visdn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDftwE98dTXidjN2k69KI4XthbLb-d9v9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431442128706-g44795e2b5vtiprp3e9ie0eth4visdn1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "431442128706-dho606581kg5vc1ggoateh7i0ctgacsu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.testingpur.mynotes"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431442128706:android:47ba0a8bae79d8dd3722db",
+        "android_client_info": {
+          "package_name": "com.testingpur.mynotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431442128706-g44795e2b5vtiprp3e9ie0eth4visdn1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDftwE98dTXidjN2k69KI4XthbLb-d9v9c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431442128706-g44795e2b5vtiprp3e9ie0eth4visdn1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "431442128706-dho606581kg5vc1ggoateh7i0ctgacsu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.testingpur.mynotes"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

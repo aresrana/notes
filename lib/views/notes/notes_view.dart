@@ -11,6 +11,7 @@ import 'package:mynotes2/views/notes/notes_list.dart';
 
 import '../../constants/routes.dart';
 
+
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
 
@@ -21,7 +22,7 @@ class NotesView extends StatefulWidget {
 class _NotesViewState extends State<NotesView> {
 
    late final FirebaseCloudStorage _notesService;
- 
+
   String get userId=>AuthService.firebase().currentUser!.id;
 
   @override
@@ -36,7 +37,7 @@ class _NotesViewState extends State<NotesView> {
     return Scaffold(
       appBar: AppBar(title: const Text('Your Notes'),
       actions: [
-       IconButton(onPressed:(){ 
+       IconButton(onPressed:(){
          Navigator.of(context).pushNamed(createOrUpdateNoteRoute);
        }, icon: const Icon(Icons.add),
        ),
@@ -47,7 +48,7 @@ class _NotesViewState extends State<NotesView> {
             if(shouldLogOut){
               if(mounted){
                 FirebaseAuth.instance.signOut();
-                Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);  
+                Navigator.of(context).pushNamedAndRemoveUntil(loginRoute, (_) => false);
               }else{
                 return;
               }
@@ -75,22 +76,22 @@ class _NotesViewState extends State<NotesView> {
              if(snapshot.hasData){
               final allNotes=snapshot.data as Iterable<CloudNote>;
                return NotesListView(
-                notes:allNotes, 
+                notes:allNotes,
                  onTap: (note) {
                      Navigator.of(context).pushNamed(
                       createOrUpdateNoteRoute,
                       arguments: note,
                       );
-                    
+
                    },
-                    onDeleteNote: (note) async{ 
+                    onDeleteNote: (note) async{
                      await _notesService.deleteNote(documentId: note.documentId);
                     },
                );
              }else{
               return const CircularProgressIndicator();
              }
-            
+
              default:
              return const CircularProgressIndicator();
           }

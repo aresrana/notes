@@ -1,6 +1,8 @@
+ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:mynotes2/services/auth_service.dart';
 import 'package:mynotes2/services/cloud/cloud_note.dart';
+import 'package:mynotes2/services/cloud/cloud_storage_constants.dart';
 import 'package:mynotes2/services/cloud/firebase_cloud_storage.dart';
 import 'package:mynotes2/utilities/generics/get_arguments.dart';
 
@@ -23,17 +25,20 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     super.initState();
   }
 
-  void _textControllerListener() async {
-    final note = _note;
-    if (note == null) {
-      return;
-    }
-    final text = _textController.text;
-    await _notesService.updateNote(
-      documentId: note.documentId,
-      text: text,
-    );
-  }
+ void _textControllerListener() async {
+   final note = _note;
+   if (note == null) {
+     return;
+   }
+   final text = _textController.text;
+   final timestamp = Timestamp.now(); // Get the current timestamp as Firestore Timestamp
+
+   await _notesService.updateNote(
+     documentId: note.documentId,
+     text: text,
+     timestamp: timestamp, // Pass the timestamp as Firestore Timestamp
+   );
+ }
 
   void _setupTextControllerListener() {
     _textController.removeListener(_textControllerListener);
@@ -67,16 +72,20 @@ class _CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
     }
   }
 
-  void _saveNoteIfTextNotEmpty() async {
-    final note = _note;
-    final text = _textController.text;
-    if (note != null && text.isNotEmpty) {
-      await _notesService.updateNote(
-        documentId: note.documentId,
-        text: text,
-      );
-    }
-  }
+ void _saveNoteIfTextNotEmpty() async {
+   final note = _note;
+   final text = _textController.text;
+   final timestamp = Timestamp.now(); // Get the current timestamp
+
+   if (note != null && text.isNotEmpty) {
+     await _notesService.updateNote(
+       documentId: note.documentId,
+       text: text,
+       timestamp: timestamp, // Pass the timestamp to the updateNote method
+     );
+   }
+ }
+
   @override
   void dispose() {
     _deleteNoteIfTextIsEmpty();

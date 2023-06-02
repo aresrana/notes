@@ -13,13 +13,20 @@ Future<void>deleteNote({required String documentId})async{
     throw CouldNotDeleteNoteException();
   }
 }
- Future<void>updateNote({ required String documentId,required String text})async{
-  try{
-     await notes.doc(documentId).update({textFieldName:text});
-  }catch(e){
-    throw CouldNotUpdateNoteException();
+  Future<void> updateNote({
+    required String documentId,
+    required String text,
+    required Timestamp timestamp,
+  }) async {
+    try {
+      await notes.doc(documentId).update({
+        textFieldName: text,
+        fieldTimeStamp: timestamp, // Update the note's timestamp field
+      });
+    } catch (e) {
+      throw CouldNotUpdateNoteException();
+    }
   }
- }
 
 
  Stream<Iterable<CloudNote>>allNotes({required String ownerUserId})=>
@@ -42,17 +49,20 @@ Future<void>deleteNote({required String documentId})async{
   }
  }
 
-  Future<CloudNote>createNewNote({required String ownerUserId}) async {
-   final document= await notes.add({
+  Future<CloudNote> createNewNote({required String ownerUserId}) async {
+    final timestamp = DateTime.now(); // Get the current timestamp
+    final document = await notes.add({
       ownerUserIdFieldName: ownerUserId,
       textFieldName: '',
+      fieldTimeStamp: Timestamp.fromDate(timestamp), // Convert DateTime to Firestore Timestamp
     });
-    final fetchedNote =await document.get();
+    final fetchedNote = await document.get();
     return CloudNote(
-      documentId: fetchedNote.id, 
-      ownerUserId:ownerUserId, 
-      text: ''
-      );
+      documentId: fetchedNote.id,
+      ownerUserId: ownerUserId,
+      text: '',
+      timestamp: timestamp,
+    );
   }
 
 

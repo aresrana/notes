@@ -18,10 +18,14 @@ class NotesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Sort the notes by timestamp in descending order
+    final sortedNotes = notes.toList()
+      ..sort((a, b) => b.timestamp.compareTo(a.timestamp));
+
     return ListView.builder(
-      itemCount: notes.length,
+      itemCount: sortedNotes.length,
       itemBuilder: (context, index) {
-        final note = notes.elementAt(index);
+        final note = sortedNotes[index];
         return ListTile(
           onTap: () {
             onTap(note);

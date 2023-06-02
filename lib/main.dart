@@ -8,9 +8,9 @@ import 'package:mynotes2/views/register_view.dart';
 import 'package:mynotes2/views/verify_email_view.dart';
 import 'constants/routes.dart';
 
-void main(){
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-    // await AuthService.firebase().initialize();
+     await AuthService.firebase().initialize();
   runApp( MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
